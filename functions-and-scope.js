@@ -15,7 +15,7 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // Log het antwoord in de terminal.
 
 // ---- Verwachte uitkomst: 6
-
+console.log("opdracht 1a, hoeveel studenten zijn Cum Laude geslaagd?")
 let studentCumLaude = 0;
 for (let participants = 0; participants < grades.length; participants++) {
     if (grades[participants] > 7) {
@@ -28,7 +28,7 @@ console.log("We hebben "+ studentCumLaude + " speciale diploma's nodig.");
 // Schrijf een functie genaamd cumLaude, die een array van cijfers verwacht (zoals grades) en het aantal Cum laude studenten teruggeeft. Gebruik hiervoor jouw antwoord van 1a.
 // Zorg ervoor dat jouw functie ook werkt als we een andere array met eindcijfers willen checken, zoals bijvoorbeeld: [6, 4, 5] of [8, 9, 4, 6, 10].
 // Log het antwoord in de terminal.
-
+console.log("opdracht 1b")
 function cumLaude (gradeArray) {
     let studentCumLaude = 0;
     for (let participants = 0; participants < gradeArray.length; participants++) {
@@ -43,6 +43,26 @@ cumLaude(grades);
 console.log(studentCumLaude);
 
 //wat als ik meerdere verzamelingen van grades heb? Bijvoorbeeld: grades1969 en grades1970?
+//hieronder een voorbeeld hoe je de functie voor meerdere arrays (grades en grades2) kan toepassen:
+
+console.log("opdracht 1c functie geschikt voor meerdere arrays met elk hun eigen naaam")
+const grades2 = [9, 3, 5, 7, 7, 4, 3, 8, 3, 3, 6, 3, 5, 6];
+//grades is al eerder gedefinieerd
+studentCumLaude = 0; //let is niet meer nodig want al eerder gedeclareerd
+function cumLade (gradeArray) {
+    for (let participants = 0; participants < gradeArray.length; participants++) {
+        if (gradeArray[participants] > 7) {
+            studentCumLaude = studentCumLaude + 1
+        }
+    }
+    return studentCumLaude;
+}
+cumLade(grades);
+console.log(studentCumLaude);
+
+studentCumLaude = 0;
+cumLade(grades2);
+console.log(studentCumLaude);
 
 
 // ---- Verwachte uitkomsten:
@@ -63,6 +83,7 @@ console.log(studentCumLaude);
 // * Hoe zorgt ik ervoor dat ik alle waardes uit de array kan langslopen, ook als de array wel 100 entries zou bevatten? for loop van 0 tot array.length-1
 // Log het antwoord in de terminal.
 
+console.log("opdracht 2, gemiddelden")
 //declareer de variabele sumOfGrades
 let sumOfGrades = 0;
 //for loop die door de array itereert
@@ -82,7 +103,7 @@ console.log(averageGrade);
 // Schrijf een functie genaamd averageGrade, die een array van cijfers verwacht (zoals grades) en het gemiddelde cijfer teruggeeft. Gebruik hiervoor jouw antwoord van 2a.
 // Zorg ervoor dat jouw functie ook werkt als we een andere array willen checken, zoals bijvoorbeeld: [6, 4, 5] of [8, 9, 4, 6, 10].
 // Log het antwoord in de terminal.
-
+console.log("opdracht 2b gemiddelden in een herbruikbare functie")
 function classAverage () {
     let sumOfGrades = 0;
 
@@ -97,8 +118,9 @@ classAverage(grades);
 console.log(classAverage());
 
 //andere aanpak:
+console.log("opdracht 2b maar dan met een array-prototype en reduce functie om waarden op te tellen")
 Array.prototype.classAverage = function () {
-    return this.reduce((r, g) => r + g, 0) / (this.length || 1); //voorkomt foutmelding bij length 0
+    return this.reduce((r, g) => r + g, 0) / (this.length || 1); //voorkomt foutmelding bij length 0 (delen door nul)
 };
 
 const grades1 = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
@@ -120,6 +142,8 @@ console.log(grades2023.classAverage());
 /* 2c: Afronden op twee decimalen */
 // Zorg ervoor dat het gemiddelde cijfer dat wordt teruggegeven uit de functie netjes wordt afgerond op twee decimalen.
 // Tip: Google is your best friend!
+
+console.log("opdracht 2c afronden van een variabele op twee cijfers achter de komma")
 let roundedAverage = Math.round(classAverage()*100)/100;
 console.log(roundedAverage);
 
@@ -135,18 +159,16 @@ console.log(roundedAverage);
 // Log het antwoord in de terminal.
 
 // ---- Verwachte uitkomst: 9
+
+console.log("Bonus hoogste cijfer")
 let highestGrade = 0;
 for(let i = 0; i< grades.length; i++) { //for loop zo vaak als dat de array lang is
-    //als de i'de waarde van de array hoger is dan koploper, update koploper dan met i'de waarde
+    //als de i'de waarde van de array hoger is dan highestGrade, update dan highestGrade met i'de waarde
     if(grades[i]>highestGrade) {
         highestGrade = grades[i]
     }
 }
 console.log(highestGrade)
-
-
-
-
 
 /* 3b: Omschrijven tot een herbruikbare functie */
 // Schrijf een functie genaamd highestGrade, die een array van cijfers verwacht (zoals grades) en het hoogste cijfer teruggeeft. Gebruik hiervoor jouw antwoord van 3a.
@@ -157,15 +179,7 @@ console.log(highestGrade)
 // highestGrade(grades) geeft 9
 // highestGrade([6, 4, 5]) geeft 6
 // highestGrade([8, 9, 4, 6, 10]) geeft 10
-Array.prototype.highestGradeF = function () {
-    let highestgrade = 0;
-    for (let i = 0; i < this.length; i++)
-        if (this[i] > highestgrade) {
-            highestGrade = this[i]
-        }
-        return highestgrade;
-    };
-console.log(grades1.highestGradeF());
-console.log(grades1999.highestGradeF());
-console.log(grades2020.highestGradeF());
-console.log(grades2023.highestGradeF());
+
+console.log("Bonus hoogste cijfer herschrijven naar een herbruikbare functie")
+
+
