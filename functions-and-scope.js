@@ -4,6 +4,14 @@
 
 const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 
+// de hierna volgende arrays zijn voor de opdrachten verderop waarin een functie herbruikbaar moet zijn voor meerdere arrays:
+
+const grades1 = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
+const grades2 = [9, 3, 3, 8, 3, 3, 6, 3, 5, 6];
+const grades1999 = [1, 3, 5, 7, 2, 4, 3];
+const grades2020 = [5, 6, 7, 8, 2, 3, 4, 5, 6, 7, 8];
+const grades2023 = [];
+
 /* Opdracht  1: Cum Laude */
 
 /* 1a: Script schrijven  */
@@ -22,13 +30,15 @@ for (let participants = 0; participants < grades.length; participants++) {
         studentCumLaude = studentCumLaude + 1
     }
 }
-console.log("We hebben "+ studentCumLaude + " speciale diploma's nodig.");
+console.log("We hebben "+ studentCumLaude + " speciale cum laude diploma's nodig.");
 
 /*  1b: Omschrijven tot een herbruikbare functie   */
 // Schrijf een functie genaamd cumLaude, die een array van cijfers verwacht (zoals grades) en het aantal Cum laude studenten teruggeeft. Gebruik hiervoor jouw antwoord van 1a.
 // Zorg ervoor dat jouw functie ook werkt als we een andere array met eindcijfers willen checken, zoals bijvoorbeeld: [6, 4, 5] of [8, 9, 4, 6, 10].
 // Log het antwoord in de terminal.
-console.log("opdracht 1b")
+
+console.log("opdracht 1b maar nu als een herbruikbare functie:")
+
 function cumLaude (gradeArray) {
     let studentCumLaude = 0;
     for (let participants = 0; participants < gradeArray.length; participants++) {
@@ -46,7 +56,7 @@ console.log(studentCumLaude);
 //hieronder een voorbeeld hoe je de functie voor meerdere arrays (grades en grades2) kan toepassen:
 
 console.log("opdracht 1c functie geschikt voor meerdere arrays met elk hun eigen naaam")
-const grades2 = [9, 3, 5, 7, 7, 4, 3, 8, 3, 3, 6, 3, 5, 6];
+
 //grades is al eerder gedefinieerd
 studentCumLaude = 0; //let is niet meer nodig want al eerder gedeclareerd
 function cumLade (gradeArray) {
@@ -58,11 +68,11 @@ function cumLade (gradeArray) {
     return studentCumLaude;
 }
 cumLade(grades);
-console.log(studentCumLaude);
+console.log("Voor de array grades: " + studentCumLaude);
 
 studentCumLaude = 0;
 cumLade(grades2);
-console.log(studentCumLaude);
+console.log("Voor de array grades2: " + studentCumLaude);
 
 
 // ---- Verwachte uitkomsten:
@@ -109,29 +119,23 @@ function classAverage () {
 
     for(let i = 0; i < (grades.length); i++) {
         sumOfGrades += grades[i];
-
     }
-    const averageGrade = sumOfGrades/(grades.length);
+    const averageGrade = sumOfGrades/(grades.length);//redundant maar ik vermijd calculatie in console log of return statements
     return averageGrade;
 }
 classAverage(grades);
 console.log(classAverage());
 
-//andere aanpak:
+//andere aanpak, gevonden op inet:
 console.log("opdracht 2b maar dan met een array-prototype en reduce functie om waarden op te tellen")
 Array.prototype.classAverage = function () {
     return this.reduce((r, g) => r + g, 0) / (this.length || 1); //voorkomt foutmelding bij length 0 (delen door nul)
 };
 
-const grades1 = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
-const grades1999 = [1, 3, 5, 7, 2, 4, 3];
-const grades2020 = [5, 6, 7, 8, 2, 3, 4, 5, 6, 7, 8];
-const grades2023 = [];
-
-console.log(grades1.classAverage());
-console.log(grades1999.classAverage());
-console.log(grades2020.classAverage());
-console.log(grades2023.classAverage());
+console.log("gemiddelde voor de array grades: "+ grades1.classAverage());
+console.log("gemiddelde voor de array grades1999: " + grades1999.classAverage());
+console.log("gemiddelde voor de array grades2020: " + grades2020.classAverage());
+console.log("gemiddelde voor de array grades2023: " + grades2023.classAverage());
 
 // ---- Verwachte uitkomsten:
 // averageGrade(grades) geeft 6.642857142857143
@@ -160,7 +164,7 @@ console.log(roundedAverage);
 
 // ---- Verwachte uitkomst: 9
 
-console.log("Bonus hoogste cijfer")
+console.log("Bonus-opdracht hoogste cijfer")
 let highestGrade = 0;
 for(let i = 0; i< grades.length; i++) { //for loop zo vaak als dat de array lang is
     //als de i'de waarde van de array hoger is dan highestGrade, update dan highestGrade met i'de waarde
@@ -182,4 +186,21 @@ console.log(highestGrade)
 
 console.log("Bonus hoogste cijfer herschrijven naar een herbruikbare functie")
 
+let highestG =0
+function hGrade (gradeArray) {
+    for (let i = 0; i < gradeArray.length; i++)
+        if (gradeArray[i] > highestG) {
+            highestG = gradeArray[i]
+        }
+    return highestG
+}
+hGrade(grades);
+console.log("Hoogste score uit de array grades: " + highestG)
 
+highestG = 0
+hGrade(grades1999);
+console.log("Hoogste score uit de array grades 1999: " + highestG)
+
+highestG = 0
+hGrade(grades2020);
+console.log("Hoogste score uit de array grades 2020: " + highestG)
