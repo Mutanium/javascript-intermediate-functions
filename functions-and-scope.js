@@ -58,8 +58,9 @@ console.log(studentCumLaude);
 console.log("opdracht 1c functie geschikt voor meerdere arrays met elk hun eigen naaam")
 
 //grades is al eerder gedefinieerd
-studentCumLaude = 0; //let is niet meer nodig want al eerder gedeclareerd
+//studentCumLaude = 0; //let is niet meer nodig want al eerder gedeclareerd
 function cumLade (gradeArray) {
+    let studentCumLaude = 0;
     for (let participants = 0; participants < gradeArray.length; participants++) {
         if (gradeArray[participants] > 7) {
             studentCumLaude = studentCumLaude + 1
@@ -70,7 +71,7 @@ function cumLade (gradeArray) {
 cumLade(grades);
 console.log("Voor de array grades: " + studentCumLaude);
 
-studentCumLaude = 0;
+
 cumLade(grades2);
 console.log("Voor de array grades2: " + studentCumLaude);
 
@@ -120,8 +121,8 @@ function classAverage () {
     for(let i = 0; i < (grades.length); i++) {
         sumOfGrades += grades[i];
     }
-    const averageGrade = sumOfGrades/(grades.length);//redundant maar ik vermijd calculatie in console log of return statements
-    return averageGrade;
+
+    return sumOfGrades / (grades.length);
 }
 classAverage(grades);
 console.log(classAverage());
@@ -148,7 +149,8 @@ console.log("gemiddelde voor de array grades2023: " + grades2023.classAverage())
 // Tip: Google is your best friend!
 
 console.log("opdracht 2c afronden van een variabele op twee cijfers achter de komma")
-let roundedAverage = Math.round(classAverage()*100)/100;
+let roundedAverage = classAverage().toFixed(2);
+//let roundedAverage = Math.round(classAverage()*100)/100;
 console.log(roundedAverage);
 
 
@@ -186,21 +188,22 @@ console.log(highestGrade)
 
 console.log("Bonus hoogste cijfer herschrijven naar een herbruikbare functie")
 
-let highestG =0
+//let highestG =0
 function hGrade (gradeArray) {
+    let highestG =0
     for (let i = 0; i < gradeArray.length; i++)
         if (gradeArray[i] > highestG) {
             highestG = gradeArray[i]
         }
     return highestG
 }
-hGrade(grades);
-console.log("Hoogste score uit de array grades: " + highestG)
 
-highestG = 0
-hGrade(grades1999);
-console.log("Hoogste score uit de array grades 1999: " + highestG)
+console.log("Hoogste score uit de array grades = " + hGrade(grades));
 
-highestG = 0
-hGrade(grades2020);
-console.log("Hoogste score uit de array grades 2020: " + highestG)
+
+
+console.log("Hoogste score uit de array grades 1999 = " + hGrade(grades1999));
+
+
+
+console.log("Hoogste score uit de array grades 2020 = " + hGrade(grades2020));
